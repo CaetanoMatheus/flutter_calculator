@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_calculator/app/presentation/widgets/button/button/button.dart';
+import 'package:flutter_calculator/app/presentation/widgets/scrollable/display/display.dart';
 import 'package:math_expressions/math_expressions.dart';
 
 class SimpleCalculatorPage extends StatefulWidget {
@@ -8,10 +10,10 @@ class SimpleCalculatorPage extends StatefulWidget {
 
 class _SimpleCalculatorPageState extends State<SimpleCalculatorPage> {
   String _equation = '0', _result = '0', _expression = '0', _lastTyped = '';
-  double _equationFontSize = 38, _resultFontSize = 48;
   List<String> _notDoubled = ['+', '-', 'x', '÷'];
 
   void _buttonPressed(String data) {
+    print('aasdasd');
     setState(() {
       if ((_lastTyped == data && _notDoubled.contains(data)) ||
           (_notDoubled.contains(data) && _notDoubled.contains(_lastTyped)))
@@ -48,33 +50,6 @@ class _SimpleCalculatorPageState extends State<SimpleCalculatorPage> {
     });
   }
 
-  Widget _buildButton(String data, {double height = 1, Color color}) {
-    return Container(
-      color: color,
-      height: MediaQuery.of(context).size.height * .1 * height,
-      child: FlatButton(
-        padding: EdgeInsets.all(16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0),
-          side: BorderSide(
-            color: Colors.white,
-            width: 1,
-            style: BorderStyle.solid,
-          ),
-        ),
-        child: Text(
-          data,
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.normal,
-            color: Colors.white,
-          ),
-        ),
-        onPressed: () => _buttonPressed(data),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -84,19 +59,10 @@ class _SimpleCalculatorPageState extends State<SimpleCalculatorPage> {
       body: Column(
         children: [
           Container(
-            alignment: Alignment.centerRight,
-            padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
-            child: Text(
-              _equation,
-              style: TextStyle(fontSize: _equationFontSize),
-            ),
+            height: size.height * .37,
+            child: Display(topText: _equation, mainText: _result),
           ),
-          Container(
-            alignment: Alignment.centerRight,
-            padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
-            child: Text(_result, style: TextStyle(fontSize: _resultFontSize)),
-          ),
-          Expanded(child: Divider()),
+          Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -106,37 +72,97 @@ class _SimpleCalculatorPageState extends State<SimpleCalculatorPage> {
                   children: [
                     TableRow(
                       children: [
-                        _buildButton('C', color: Colors.blueAccent),
-                        _buildButton('⌫', color: Colors.blueAccent),
-                        _buildButton('÷', color: Colors.redAccent),
+                        Button(
+                          'C',
+                          color: Colors.blueAccent,
+                          onTap: _buttonPressed,
+                        ),
+                        Button(
+                          '⌫',
+                          color: Colors.blueAccent,
+                          onTap: _buttonPressed,
+                        ),
+                        Button(
+                          '÷',
+                          color: Colors.redAccent,
+                          onTap: _buttonPressed,
+                        ),
                       ],
                     ),
                     TableRow(
                       children: [
-                        _buildButton('7', color: Colors.black54),
-                        _buildButton('8', color: Colors.black54),
-                        _buildButton('9', color: Colors.black54),
+                        Button(
+                          '7',
+                          color: Colors.black54,
+                          onTap: _buttonPressed,
+                        ),
+                        Button(
+                          '8',
+                          color: Colors.black54,
+                          onTap: _buttonPressed,
+                        ),
+                        Button(
+                          '9',
+                          color: Colors.black54,
+                          onTap: _buttonPressed,
+                        ),
                       ],
                     ),
                     TableRow(
                       children: [
-                        _buildButton('4', color: Colors.black54),
-                        _buildButton('5', color: Colors.black54),
-                        _buildButton('6', color: Colors.black54),
+                        Button(
+                          '4',
+                          color: Colors.black54,
+                          onTap: _buttonPressed,
+                        ),
+                        Button(
+                          '5',
+                          color: Colors.black54,
+                          onTap: _buttonPressed,
+                        ),
+                        Button(
+                          '6',
+                          color: Colors.black54,
+                          onTap: _buttonPressed,
+                        ),
                       ],
                     ),
                     TableRow(
                       children: [
-                        _buildButton('1', color: Colors.black54),
-                        _buildButton('2', color: Colors.black54),
-                        _buildButton('3', color: Colors.black54),
+                        Button(
+                          '1',
+                          color: Colors.black54,
+                          onTap: _buttonPressed,
+                        ),
+                        Button(
+                          '2',
+                          color: Colors.black54,
+                          onTap: _buttonPressed,
+                        ),
+                        Button(
+                          '3',
+                          color: Colors.black54,
+                          onTap: _buttonPressed,
+                        ),
                       ],
                     ),
                     TableRow(
                       children: [
-                        _buildButton('.', color: Colors.black54),
-                        _buildButton('0', color: Colors.black54),
-                        _buildButton('00', color: Colors.black54),
+                        Button(
+                          '.',
+                          color: Colors.black54,
+                          onTap: _buttonPressed,
+                        ),
+                        Button(
+                          '0',
+                          color: Colors.black54,
+                          onTap: _buttonPressed,
+                        ),
+                        Button(
+                          '00',
+                          color: Colors.black54,
+                          onTap: _buttonPressed,
+                        ),
                       ],
                     ),
                   ],
@@ -147,17 +173,40 @@ class _SimpleCalculatorPageState extends State<SimpleCalculatorPage> {
                 child: Table(
                   children: [
                     TableRow(
-                      children: [_buildButton('x', color: Colors.redAccent)],
-                    ),
-                    TableRow(
-                      children: [_buildButton('-', color: Colors.redAccent)],
-                    ),
-                    TableRow(
-                      children: [_buildButton('+', color: Colors.redAccent)],
+                      children: [
+                        Button(
+                          'x',
+                          color: Colors.redAccent,
+                          onTap: _buttonPressed,
+                        )
+                      ],
                     ),
                     TableRow(
                       children: [
-                        _buildButton('=', color: Colors.blueAccent, height: 2),
+                        Button(
+                          '-',
+                          color: Colors.redAccent,
+                          onTap: _buttonPressed,
+                        )
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        Button(
+                          '+',
+                          color: Colors.redAccent,
+                          onTap: _buttonPressed,
+                        )
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        Button(
+                          '=',
+                          color: Colors.blueAccent,
+                          height: 2,
+                          onTap: _buttonPressed,
+                        ),
                       ],
                     ),
                   ],
