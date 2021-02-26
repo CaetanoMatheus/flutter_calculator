@@ -13,7 +13,6 @@ class _SimpleCalculatorPageState extends State<SimpleCalculatorPage> {
   List<String> _notDoubled = ['+', '-', 'x', '÷'];
 
   void _buttonPressed(String data) {
-    print('aasdasd');
     setState(() {
       if ((_lastTyped == data && _notDoubled.contains(data)) ||
           (_notDoubled.contains(data) && _notDoubled.contains(_lastTyped)))
@@ -59,163 +58,170 @@ class _SimpleCalculatorPageState extends State<SimpleCalculatorPage> {
       body: Column(
         children: [
           Container(
-            height: size.height * .37,
-            child: Display(topText: _equation, mainText: _result),
+            child: Display(
+              alignment: Alignment.bottomRight,
+              height: 3.5,
+              topText: _equation,
+              mainText: _result,
+            ),
           ),
           Spacer(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+          _buildKeyboard(size),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildKeyboard(Size size) {
+    return Row(
+      children: [
+        Container(
+          width: size.width * .75,
+          child: Table(
             children: [
-              Container(
-                width: size.width * .75,
-                child: Table(
-                  children: [
-                    TableRow(
-                      children: [
-                        Button(
-                          'C',
-                          color: Colors.blueAccent,
-                          onTap: _buttonPressed,
-                        ),
-                        Button(
-                          '⌫',
-                          color: Colors.blueAccent,
-                          onTap: _buttonPressed,
-                        ),
-                        Button(
-                          '÷',
-                          color: Colors.redAccent,
-                          onTap: _buttonPressed,
-                        ),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Button(
-                          '7',
-                          color: Colors.black54,
-                          onTap: _buttonPressed,
-                        ),
-                        Button(
-                          '8',
-                          color: Colors.black54,
-                          onTap: _buttonPressed,
-                        ),
-                        Button(
-                          '9',
-                          color: Colors.black54,
-                          onTap: _buttonPressed,
-                        ),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Button(
-                          '4',
-                          color: Colors.black54,
-                          onTap: _buttonPressed,
-                        ),
-                        Button(
-                          '5',
-                          color: Colors.black54,
-                          onTap: _buttonPressed,
-                        ),
-                        Button(
-                          '6',
-                          color: Colors.black54,
-                          onTap: _buttonPressed,
-                        ),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Button(
-                          '1',
-                          color: Colors.black54,
-                          onTap: _buttonPressed,
-                        ),
-                        Button(
-                          '2',
-                          color: Colors.black54,
-                          onTap: _buttonPressed,
-                        ),
-                        Button(
-                          '3',
-                          color: Colors.black54,
-                          onTap: _buttonPressed,
-                        ),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Button(
-                          '.',
-                          color: Colors.black54,
-                          onTap: _buttonPressed,
-                        ),
-                        Button(
-                          '0',
-                          color: Colors.black54,
-                          onTap: _buttonPressed,
-                        ),
-                        Button(
-                          '00',
-                          color: Colors.black54,
-                          onTap: _buttonPressed,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+              TableRow(
+                children: [
+                  Button(
+                    'C',
+                    color: Colors.blueAccent,
+                    onTap: _buttonPressed,
+                  ),
+                  Button(
+                    '⌫',
+                    color: Colors.blueAccent,
+                    onTap: _buttonPressed,
+                  ),
+                  Button(
+                    '÷',
+                    color: Colors.redAccent,
+                    onTap: _buttonPressed,
+                  ),
+                ],
               ),
-              Container(
-                width: size.width * .25,
-                child: Table(
-                  children: [
-                    TableRow(
-                      children: [
-                        Button(
-                          'x',
-                          color: Colors.redAccent,
-                          onTap: _buttonPressed,
-                        )
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Button(
-                          '-',
-                          color: Colors.redAccent,
-                          onTap: _buttonPressed,
-                        )
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Button(
-                          '+',
-                          color: Colors.redAccent,
-                          onTap: _buttonPressed,
-                        )
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Button(
-                          '=',
-                          color: Colors.blueAccent,
-                          height: 2,
-                          onTap: _buttonPressed,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+              TableRow(
+                children: [
+                  Button(
+                    '7',
+                    color: Colors.black54,
+                    onTap: _buttonPressed,
+                  ),
+                  Button(
+                    '8',
+                    color: Colors.black54,
+                    onTap: _buttonPressed,
+                  ),
+                  Button(
+                    '9',
+                    color: Colors.black54,
+                    onTap: _buttonPressed,
+                  ),
+                ],
+              ),
+              TableRow(
+                children: [
+                  Button(
+                    '4',
+                    color: Colors.black54,
+                    onTap: _buttonPressed,
+                  ),
+                  Button(
+                    '5',
+                    color: Colors.black54,
+                    onTap: _buttonPressed,
+                  ),
+                  Button(
+                    '6',
+                    color: Colors.black54,
+                    onTap: _buttonPressed,
+                  ),
+                ],
+              ),
+              TableRow(
+                children: [
+                  Button(
+                    '1',
+                    color: Colors.black54,
+                    onTap: _buttonPressed,
+                  ),
+                  Button(
+                    '2',
+                    color: Colors.black54,
+                    onTap: _buttonPressed,
+                  ),
+                  Button(
+                    '3',
+                    color: Colors.black54,
+                    onTap: _buttonPressed,
+                  ),
+                ],
+              ),
+              TableRow(
+                children: [
+                  Button(
+                    '.',
+                    color: Colors.black54,
+                    onTap: _buttonPressed,
+                  ),
+                  Button(
+                    '0',
+                    color: Colors.black54,
+                    onTap: _buttonPressed,
+                  ),
+                  Button(
+                    '00',
+                    color: Colors.black54,
+                    onTap: _buttonPressed,
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
+        ),
+        Container(
+          width: size.width * .25,
+          child: Table(
+            children: [
+              TableRow(
+                children: [
+                  Button(
+                    'x',
+                    color: Colors.redAccent,
+                    onTap: _buttonPressed,
+                  )
+                ],
+              ),
+              TableRow(
+                children: [
+                  Button(
+                    '-',
+                    color: Colors.redAccent,
+                    onTap: _buttonPressed,
+                  )
+                ],
+              ),
+              TableRow(
+                children: [
+                  Button(
+                    '+',
+                    color: Colors.redAccent,
+                    onTap: _buttonPressed,
+                  )
+                ],
+              ),
+              TableRow(
+                children: [
+                  Button(
+                    '=',
+                    color: Colors.blueAccent,
+                    height: 2,
+                    onTap: _buttonPressed,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
